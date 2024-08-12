@@ -1,0 +1,32 @@
+VAR
+    longueur, nbr_mots, nbr_voyelles: INTEGER := 0;
+    caractere, precedent: CHAR;
+
+BEGIN
+    READ(caractere); // Lire le premier caractère
+    precedent := ' '; // Initialiser 'precedent' comme espace pour gérer le premier mot correctement
+
+    WHILE caractere <> '.' DO
+        // Compter le caractère
+        longueur := longueur + 1;
+
+        // Compter les mots (un mot commence après un espace ou au début)
+        IF (precedent = ' ' AND caractere <> ' ') THEN
+            nbr_mots := nbr_mots + 1;
+        END IF
+
+        // Compter les voyelles
+        IF caractere IN ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'] THEN
+            nbr_voyelles := nbr_voyelles + 1;
+        END IF
+
+        // Lire le prochain caractère
+        precedent := caractere;
+        READ(caractere);
+    END WHILE
+
+    // Afficher les résultats
+    PRINT("Longueur de la phrase: ", longueur);
+    PRINT("Nombre de mots: ", nbr_mots);
+    PRINT("Nombre de voyelles: ", nbr_voyelles);
+END
